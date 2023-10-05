@@ -1,3 +1,44 @@
+export function buildCategoryList(myCategories, displayElement) {
+    // find DOM element
+    const myNav = document.getElementById(displayElement);
+
+    // clear DOM element
+     myNav.innerHTML = '';
+
+     let myNavHtml = '';
+
+     // iterate og lav et element for hver kategori
+     myCategories.forEach((category)=>{
+         myNavHtml += `<li onclick="window._viewCallBacks.categoriesClick('${category}')">${category}</li>`
+     });
+
+     myNav.innerHTML = `<ul>${myNavHtml}</ul>`;
+}
+
+export function buildProductGallery(myProducts, displayElement, headline) {
+    // find DOM element
+    const myDisplay = document.getElementById(displayElement);
+
+    // clear DOM element
+    myDisplay.innerHTML = '';
+
+
+    let myDisplayHtml = `<h2>${headline}</h2>`;
+    
+
+    // iterate gennem og dan elementer for hvert produkt
+    if (myProducts.length > 1) {
+        myProducts.forEach((product)=>{
+            myDisplayHtml += `<article class="productCard"><h3>${product.title}</h3><img onclick="window._viewCallBacks.productClick('${product.id}')" src="${product.thumbnail}" alt="image-of-product"><p>${product.description}</p><p>Brand: ${product.brand}</p><p>Price: ${product.price}</p></article>`;
+        });
+    } else {
+        myDisplayHtml = `<article class="productCard"><h3>${myProducts.title}</h3><img onclick="window._viewCallBacks.productClick('${myProducts.id}')" src="${myProducts.images[0]}" alt="image-of-product"><p>${myProducts.description}</p><p>Brand: ${myProducts.brand}</p><p>Price: ${myProducts.price}</p></article><button onclick="window._viewCallBacks.categoriesClick('${myProducts.category}')">${myProducts.category}</button>`;
+        
+    }
+    
+
+    myDisplay.innerHTML = myDisplayHtml;
+}
 
 
 /*  product data structure reference
