@@ -20,7 +20,7 @@ function initApp(){
        
     });
 
-    getAllProducts(3, 10).then((products) => {
+    getAllProducts(8, 50).then((products) => {
         // console.log(products);
 
         buildProductGallery(products, productDisplayElement, 'Featured products');
